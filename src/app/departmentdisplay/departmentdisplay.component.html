@@ -1,0 +1,128 @@
+<br>
+<!-- this tpo 2 lines for edit/delete icons -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<h1 class='bg bg-light' style="float:left">DEPARTMENT</h1>
+<div class='container'>
+    <button class="btn btn-lg btn-warning text-white" style="float:right" (click)="open(content)">ADD DEPARTMENT</button><br/>
+  </div>
+  <br>
+  <table class='table table-hover table-striped'>
+    <thead>
+      <tr>
+        <td><b>Name</b></td>
+        <td><b>Description</b></td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of arr">
+        <td>{{item.name}}</td>
+        <td>{{item.description}}</td>
+        <td><button class="btn btn-danger" style="font-size:24px" (click)="onDesigDelete(item)" ><i class="material-icons">delete</i></button> |
+          <button class="btn btn-secondary" style="font-size:24px" (click)= "open(content1)"> <i class="material-icons">border_color</i></button>
+        </td>
+<!--
+        <td>
+          <button class="btn btn-secondary"(click)="open(content)" ><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</button> |
+          <button class="btn btn-danger" (click)="onDesigDelete(item)" ><span class="glyphicon glyphicon-Delete">Delete</span></button></td> -->
+
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #content let-modal>
+
+    <div class="modal-body">
+        <!-- <div class='col-6'> -->
+      <form>
+          <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title" >Add Department</h4>
+              <button type="button" class="close bg bg-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">Close</span>
+              </button>
+            </div>
+        <div class="form-group">
+          <label for="designation">Name</label>
+          <div class="input-group">
+            <input id="designation"  class="form-control"  required minlength="8" pattern="[a-zA-Z]*" [(ngModel)]="name" #name1="ngModel" placeholder="Enter Name" name="name">
+            <label class="alert alert-danger" *ngIf="name1.hasError('pattern') && !name1.pristine" >Only Charecters</label>
+            <label class="alert alert-danger" *ngIf="name1.hasError('required') && !name1.pristine" >Name is required</label>
+            <label class="alert alert-danger" *ngIf="name1.hasError('minlength') && !name1.pristine" >Min 8 digits</label>
+            <div class="input-group-append">
+              <!-- <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button"></button> -->
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <div class="input-group">
+            <input id="description" class="form-control" required maxlength="100" pattern="[a-zA-Z]*" #name1="ngModel" [(ngModel)]="description"  placeholder="Description" name="description">
+            <label class="alert alert-danger" *ngIf="name1.hasError('pattern') && !name1.pristine">Only Charecters</label>
+            <label class="alert alert-danger" *ngIf="name1.hasError('required') && !name1.pristine" >Name is Required</label>
+            <label class="alert alert-danger" *ngIf="name1.hasError('minlength') && !name1.pristine" >Min 100 Digits</label>            <div class="input-group-append">
+              <!-- <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button"></button> -->
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <!-- </div> -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)='onAdddeptClick()'>Save</button>
+    </div>
+
+  </ng-template>
+
+
+
+
+<!-- Edit code of html -->
+  <ng-template #content1 let-modal>
+
+    <div class="modal-body">
+        <!-- <div class='col-6'> -->
+      <form>
+          <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title" >Edit Department</h4>
+              <button type="button" class="close bg bg-danger" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">Close</span>
+              </button>
+            </div>
+        <div class="form-group">
+          <label for="designation">Name</label>
+          <div class="input-group">
+            <input id="designation"  class="form-control"  required minlength="8" pattern="[a-zA-Z]*" [(ngModel)]="name" #name1="ngModel" placeholder="Enter Name" name="name">
+            <label class="alert alert-danger" *ngIf="name1.hasError('pattern') && !name1.pristine" >Only Charecters</label>
+            <label class="alert alert-danger" *ngIf="name1.hasError('required') && !name1.pristine" >Name is required</label>
+            <label class="alert alert-danger" *ngIf="name1.hasError('minlength') && !name1.pristine" >Min 8 digits</label>
+            <div class="input-group-append">
+              <!-- <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button"></button> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <div class="input-group">
+            <input id="description" class="form-control" required maxlength="100" pattern="[a-zA-Z]*" #name1="ngModel" [(ngModel)]="description"  placeholder="Description" name="description">
+            <label class="alert alert-danger" *ngIf="name1.hasError('pattern') && !name1.pristine">Only Charecters</label>
+            <label class="alert alert-danger" *ngIf="name1.hasError('required') && !name1.pristine" >Name is Required</label>
+            <label class="alert alert-danger" *ngIf="name1.hasError('minlength') && !name1.pristine" >Min 100 Digits</label>
+            <div class="input-group-append">
+              <!-- <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button"></button> -->
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <!-- </div> -->
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)='onEditeptClick()'>Save</button>
+      <!-- <button class="btn btn-primary" >Cancel</button> -->
+    </div>
+
+  </ng-template>
+
